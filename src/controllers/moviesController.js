@@ -93,10 +93,17 @@ const moviesController = {
         .catch(error => console.log(error))
     },
     delete: function (req, res) {
-        // TODO
+        const Movie = req.params
+        res.render('moviesDelete',{Movie})
     },
     destroy: function (req, res) {
-        // TODO
+        Movies.destroy({
+            where: {id: req.params.id}
+        })
+        .then(() => {
+            res.redirect('/movies')
+        })
+        .catch(error => {console.timeLog(error)})
     }
 
 }
